@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId "com.gamezzz.floors"
+        minSdkVersion 15
+        targetSdkVersion 29
+        multiDexEnabled true
+
+        ndk {
+            moduleName "player_shared"
+            abiFilters 'arm64-v8a', 'x86_64'
+
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    implementation 'com.google.android.gms:play-services:+'
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // More deps here //
+}
